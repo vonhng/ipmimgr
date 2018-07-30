@@ -59,7 +59,8 @@ class Power(cli.Application):
             except Exception as e:
                 print colors.warn | "[ ERROR ] failed: {}".format(e)
             else:
-                print colors.green | "[ OK ] power is {}".format(ret.get("powerstate", "unknow"))
+                status = ret.get("powerstate") if ret.get("powerstate") else ret.get("pendingpowerstate")
+                print colors.green | "[ OK ] power is {}".format(status, "unknow")
 
 
 if __name__ == "__main__":
